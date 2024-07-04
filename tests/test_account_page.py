@@ -3,7 +3,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 import allure
 
+from locators.account_page_locators import AccountPageLocators
+from locators.base_page_locators import BasePageLocators
+from locators.login_page_locators import LoginPageLocator
 from pages.base_page import BasePage
+from pages.loginPage import LoginPage
 
 
 class TestAccountPage:
@@ -11,48 +15,71 @@ class TestAccountPage:
     def test_login_account(self, data_new3, driver_double):
         # Регистрация пользователя и авторизация
         payload = data_new3
-        login = BasePage(driver_double)
-        login.click_button_login_account()
+        #Сделал экземпляр базовой страницы
+        basepage = BasePage(driver_double)
+        basepage.click_button_login_account()
+        #Сделал экземпляр страницы логина
+        login  = LoginPage(driver_double)
+        #Ввел мыло, пароль и нажал enter
         login.enter_field_Email(payload["email"])
         login.enter_field_password(payload["password"])
+        basepage.wait_active_element(LoginPageLocator.BUTTON_ENTER)
         login.click_button_enter()
-        # login.wait_presence_of_element_located(BasePage.BUTTON_ACCOUNT)
-        time.sleep(1)  # тут пока не смог сделать ожидание
-        login.click(BasePage.BUTTON_ACCOUNT)
-        login.wait_and_find_element(BasePage.BUTTON_SAVE)
-        assert login.get_answer(BasePage.BUTTON_SAVE) == "Сохранить"
+        #Сделал ожидание перехода на базовую страницу
+        # basepage.wait_presence_of_element_located(BasePageLocators.BUTTON_CONSTRUCTOR2)
+        basepage.wait_active_element(BasePageLocators.BUTTON_CREATE_ORDER)
+        # time.sleep(1)  # тут пока не смог сделать ожидание
+        basepage.click(BasePageLocators.BUTTON_ACCOUNT)
+        #Подождать пока появится кнопка сохранить
+        basepage.wait_and_find_element(AccountPageLocators.BUTTON_SAVE)
+        assert basepage.get_answer(AccountPageLocators.BUTTON_SAVE) == "Сохранить"
 
     @allure.title("Переход в раздел «История заказов»")
     def test_go_to_orders(self, data_new3, driver_double):
+        # Регистрация пользователя и авторизация
         payload = data_new3
-        login = BasePage(driver_double)
-        login.click_button_login_account()
+        # Сделал экземпляр базовой страницы
+        basepage = BasePage(driver_double)
+        basepage.click_button_login_account()
+        # Сделал экземпляр страницы логина
+        login = LoginPage(driver_double)
+        # Ввел мыло, пароль и нажал enter
         login.enter_field_Email(payload["email"])
         login.enter_field_password(payload["password"])
+        basepage.wait_active_element(LoginPageLocator.BUTTON_ENTER)
         login.click_button_enter()
-        time.sleep(1)  # тут пока не смог сделать ожидание
-        login.click(BasePage.BUTTON_ACCOUNT)
-        login.wait_and_find_element(BasePage.BUTTON_SAVE)
-        login.click(BasePage.BUTTON_HISTORY_PROFILE)
-        # time.sleep(2)  # тут пока не смог сделать ожидание
-        #
-        # ul = WebDriverWait(self.driver, 30).until(expected_conditions.element_to_be_clickable(BasePage.BUTTON_ORDER_HISTORY))
-        # order_list = login.get_order_list()
-        # assert order_list is None
-        # assert len(order_list) == 0
-        # assert True
+        # Сделал ожидание перехода на базовую страницу
+        # basepage.wait_presence_of_element_located(BasePageLocators.BUTTON_CONSTRUCTOR2)
+        basepage.wait_active_element(BasePageLocators.BUTTON_CREATE_ORDER)
+        # time.sleep(1)  # тут пока не смог сделать ожидание
+        basepage.click(BasePageLocators.BUTTON_ACCOUNT)
+        # Подождать пока появится кнопка сохранить
+        basepage.wait_and_find_element(AccountPageLocators.BUTTON_SAVE)
+
+        basepage.click(AccountPageLocators.BUTTON_HISTORY_PROFILE)
+
         assert login.get_current_url() == "https://stellarburgers.nomoreparties.site/account/order-history"
 
     @allure.title("Выход из личного кабинета")
     def test_exit_user_account(self, data_new3, driver_double):
+        # Регистрация пользователя и авторизация
         payload = data_new3
-        login = BasePage(driver_double)
-        login.click_button_login_account()
+        # Сделал экземпляр базовой страницы
+        basepage = BasePage(driver_double)
+        basepage.click_button_login_account()
+        # Сделал экземпляр страницы логина
+        login = LoginPage(driver_double)
+        # Ввел мыло, пароль и нажал enter
         login.enter_field_Email(payload["email"])
         login.enter_field_password(payload["password"])
+        basepage.wait_active_element(LoginPageLocator.BUTTON_ENTER)
         login.click_button_enter()
-        time.sleep(1)  # тут пока не смог сделать ожидание
-        login.click(BasePage.BUTTON_ACCOUNT)
-        login.wait_and_find_element(BasePage.BUTTON_SAVE)
-        login.click(BasePage.BUTTON_EXIT)
-        assert login.wait_active_element(BasePage.BUTTON_ENTER)
+        # Сделал ожидание перехода на базовую страницу
+        # basepage.wait_presence_of_element_located(BasePageLocators.BUTTON_CONSTRUCTOR2)
+        basepage.wait_active_element(BasePageLocators.BUTTON_CREATE_ORDER)
+        # time.sleep(1)  # тут пока не смог сделать ожидание
+        basepage.click(BasePageLocators.BUTTON_ACCOUNT)
+        # Подождать пока появится кнопка сохранить
+        basepage.wait_and_find_element(AccountPageLocators.BUTTON_SAVE)
+        basepage.click(AccountPageLocators.BUTTON_EXIT)
+        assert basepage.wait_active_element(LoginPageLocator.BUTTON_ENTER)

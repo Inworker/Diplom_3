@@ -1,10 +1,8 @@
 from selenium.webdriver.common.by import By
 
 
-
 class BasePageLocators:
     BUTTON_ENTER_ACCOUNT = (By.XPATH, "//button[text()='Войти в аккаунт']")
-    #   Локаторы для страницы основных функций
     BUTTON_CONSTRUCTOR = (By.XPATH, "//a/p[text()='Конструктор']")
     BUTTON_LIST_ORDER = (By.XPATH, "//a/p[text()='Лента Заказов']")
     FIRST_INGREDIENT_BULKA = (By.XPATH, "*//ul[1]/a[1]")
@@ -18,7 +16,3 @@ class BasePageLocators:
                 '*//h2[@class = "Modal_modal__title_shadow__3ikwq Modal_modal__title__2L34m text text_type_digits-large mb-8"]')
     LAST_ORDER_LENTA = (By.XPATH, "//ul//a//p[@class = 'text text_type_digits-default']")
     BUTTON_ACCOUNT = (By.XPATH, "//*[contains(@href,'/account')]")
-
-
-
-

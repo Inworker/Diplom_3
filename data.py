@@ -1,14 +1,14 @@
 from faker import Faker
 
+
 class Urls:
     HOME_PAGE = "https://stellarburgers.nomoreparties.site"
     LOGIN_END_POINT = "/login"
-    FORGOT_PASSWORD_END_POINT ="/forgot-password"
+    FORGOT_PASSWORD_END_POINT = "/forgot-password"
     RESET_PASSWORD_END_POINT = "/reset-password"
     ACCOUNT_END_POINT = "/account"
     ACCOUNT_PROFILE_END_POINT = "/account/profile"
     LIST_OF_ORDERS_END_POINT = "/feed"
-    #
     GET_DATA_INGREDIENT_URL = "/api/ingredients"
     CREATE_ORDER_URL = "/api/orders"
     RESET_PASSWORD_URL = "/api/password-reset"
@@ -18,6 +18,7 @@ class Urls:
     AUTH_USER_URL = "/api/auth/user"
     AUTH_LOGOUT_USER_URL = "/api/auth/logout"
     AUTH_TOKEN_URL = "/api/auth/token"
+
 
 class FakeData:
     fake = Faker()

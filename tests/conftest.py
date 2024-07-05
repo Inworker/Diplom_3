@@ -1,7 +1,6 @@
 import pytest
 from selenium import webdriver
 import allure
-
 import helper
 from data import Urls
 import requests
@@ -15,15 +14,13 @@ def driver_double(request):
         driver = webdriver.Chrome()
     elif request.param == 'firefox':
         options = webdriver.FirefoxOptions()
-
-        # options.maximize_window()
-        # options.add_argument('--window-size=2560,1440')
         driver = webdriver.Firefox(options=options)
-    driver.get(Urls.HOME_PAGE)#Тут пишем базовую страницу
+    driver.get(Urls.HOME_PAGE)
     driver.maximize_window()
 
     yield driver
     driver.quit()
+
 
 @pytest.fixture(scope='function')
 def data_new3():

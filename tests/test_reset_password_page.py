@@ -1,6 +1,5 @@
 import allure
 from data import Urls
-from locators.reset_password_page_locators import ResetPasswordPageLocators
 from pages.base_page import BasePage
 from pages.forgot_page import ForgotPage
 from pages.loginPage import LoginPage
@@ -39,7 +38,8 @@ class TestResetPasswordPage:
         base_page.wait_for_url_changes_restore()
         reset_page = ResetPasswordPage(driver_double)
         hidden = reset_page.get_input_status()
-        base_page.wait_presence_of_element_located(ResetPasswordPageLocators.EYES_AREA)
+        reset_page.wait_icon_eyes()
+        reset_page.wait_icon_eyes_clikable()
         reset_page.click_frame_password_eyes()
         show = reset_page.get_input_status()
         assert hidden == False and show == True, "Неправильное состояние поля пароля"

@@ -32,7 +32,7 @@ class TestMainPage:
 
     #
     @allure.title("при добавлении ингредиента в заказ счётчик этого ингридиента увеличивается,")
-    def test_add_angreedient_in_order_counter(self, driver_double):
+    def test_add_ingredient_in_order_counter(self, driver_double):
         basepage = BasePage(driver_double)
         count_ingredient = basepage.get_count_ingredient()
         assert count_ingredient == "0"

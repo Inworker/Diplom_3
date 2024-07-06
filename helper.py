@@ -12,17 +12,3 @@ class CreateCurrierData:
             "name": fake.first_name()
         }
         return CREATE_COURIER_BODY
-
-    @staticmethod
-    def generate_fake_user_data():
-        CREATE_COURIER_BODY = {
-            "email": fake.email(),
-            "password": fake.password(),
-            "name": fake.first_name()
-        }
-        return CREATE_COURIER_BODY
-
-    @staticmethod
-    def generate_fake_email():
-        FAKE_EMAIL = {"email": fake.email()}
-        return FAKE_EMAIL

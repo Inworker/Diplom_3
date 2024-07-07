@@ -23,3 +23,7 @@ class Urls:
 class FakeData:
     fake = Faker()
     fake_email = fake.email()
+
+
+class TimeWaitElement:
+    TIME_OUT = 30

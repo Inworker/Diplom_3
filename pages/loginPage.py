@@ -1,6 +1,8 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 import allure
+
+from data import TimeWaitElement
 from locators.login_page_locators import LoginPageLocator
 from pages.base_page import BasePage
 
@@ -37,5 +39,5 @@ class LoginPage(BasePage):
 
     @allure.step("Подождать, что кнопка Вход активна")
     def wait_active_element_button_enter(self):
-        WebDriverWait(self.driver, 30).until(expected_conditions.element_to_be_clickable(LoginPageLocator.BUTTON_ENTER))
+        WebDriverWait(self.driver, TimeWaitElement.TIME_OUT).until(expected_conditions.element_to_be_clickable(LoginPageLocator.BUTTON_ENTER))
         return self.driver.find_element(*LoginPageLocator.BUTTON_ENTER)

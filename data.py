@@ -18,6 +18,7 @@ class Urls:
     AUTH_USER_URL = "/api/auth/user"
     AUTH_LOGOUT_USER_URL = "/api/auth/logout"
     AUTH_TOKEN_URL = "/api/auth/token"
+    HISTORY_ACCOUNT_PAGE = "https://stellarburgers.nomoreparties.site/account/order-history"
 
 
 class FakeData:

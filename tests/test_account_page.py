@@ -1,4 +1,6 @@
 import allure
+
+from data import Urls
 from locators.login_page_locators import LoginPageLocator
 from pages.account_page import AccountPage
 from pages.base_page import BasePage
@@ -26,7 +28,7 @@ class TestAccountPage:
         basepage.wait_active_create_order_click_account()
         account_page = AccountPage(driver_double)
         account_page.wait_button_save_click_history()
-        assert basepage.get_current_url() == "https://stellarburgers.nomoreparties.site/account/order-history"
+        assert basepage.get_current_url() == Urls.HISTORY_ACCOUNT_PAGE
 
     @allure.title("Выход из личного кабинета")
     def test_exit_user_account(self, create_user_data, driver_double):

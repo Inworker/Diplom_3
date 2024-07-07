@@ -16,11 +16,11 @@ class TestOrdersList:
         assert sostav == "Cостав"
 
     @allure.title("заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов»,")
-    def test_get_order_user_page_order_history(self, data_new3, driver_double):
+    def test_get_order_user_page_order_history(self, create_user_data, driver_double):
         basepage = BasePage(driver_double)
         basepage.click_button_login_account()
         login = LoginPage(driver_double)
-        login.enter_login_password(data_new3)
+        login.enter_login_password(create_user_data)
         basepage.create_order_wait_id_not_999()
         count_order = basepage.get_id_order()
         assert count_order != "9999"
@@ -36,11 +36,11 @@ class TestOrdersList:
         assert order_lenta == count_order_account
 
     @allure.title("при создании нового заказа счётчик Выполнено за всё время увеличивается,")
-    def test_count_all_time(self, data_new3, driver_double):
+    def test_count_all_time(self, create_user_data, driver_double):
         basepage = BasePage(driver_double)
         basepage.click_button_login_account()
         login = LoginPage(driver_double)
-        login.enter_login_password(data_new3)
+        login.enter_login_password(create_user_data)
         basepage.wait_create_order_active_click_order_list()
         order_page = OrderListPage(driver_double)
         order_page.wait_count_all_orders()
@@ -59,11 +59,11 @@ class TestOrdersList:
         assert (count_all_orders_end - count_all_orders) == 1
 
     @allure.title("при создании нового заказа счётчик Выполнено за сегодня увеличивается")
-    def test_order_today_count_plus(self, data_new3, driver_double):
+    def test_order_today_count_plus(self, create_user_data, driver_double):
         basepage = BasePage(driver_double)
         basepage.click_button_login_account()
         login = LoginPage(driver_double)
-        login.enter_login_password(data_new3)
+        login.enter_login_password(create_user_data)
         basepage.wait_create_order_active()
         basepage.click_order_list()
         order_page = OrderListPage(driver_double)
@@ -81,11 +81,11 @@ class TestOrdersList:
         assert order_today_end - order_today >= 1
 
     @allure.title("после оформления заказа его номер появляется в разделе В работе.")
-    def test_order_frame_in_work(self, data_new3, driver_double):
+    def test_order_frame_in_work(self, create_user_data, driver_double):
         basepage = BasePage(driver_double)
         basepage.click_button_login_account()
         login = LoginPage(driver_double)
-        login.enter_login_password(data_new3)
+        login.enter_login_password(create_user_data)
         basepage.create_order_wait_id_not_999()
         count_order = basepage.get_id_order()
         count_order = "0" + count_order

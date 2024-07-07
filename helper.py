@@ -5,7 +5,7 @@ fake = Faker()
 
 class CreateCurrierData:
     @staticmethod
-    def generate_currier_data():
+    def generate_courier_data():
         CREATE_COURIER_BODY = {
             "email": fake.email(),
             "password": fake.password(),

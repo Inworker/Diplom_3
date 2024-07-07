@@ -41,10 +41,10 @@ class TestMainPage:
         assert count_ingredient == "2"
 
     @allure.title("залогиненный пользователь может оформить заказ.")
-    def test_create_order_auth_user(self, data_new3, driver_double):
+    def test_create_order_auth_user(self, create_user_data, driver_double):
         basepage = BasePage(driver_double)
         basepage.click_button_login_account()
         login = LoginPage(driver_double)
-        login.enter_login_password(data_new3)
+        login.enter_login_password(create_user_data)
         basepage.create_order_get_id()
         assert basepage.create_order_get_id() != "0"

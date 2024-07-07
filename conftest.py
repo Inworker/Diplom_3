@@ -23,8 +23,8 @@ def driver_double(request):
 
 
 @pytest.fixture(scope='function')
-def data_new3():
-    payload = helper.CreateCurrierData().generate_currier_data()
+def create_user_data():
+    payload = helper.CreateCurrierData().generate_courier_data()
     response_create_user = requests.post(Urls.HOME_PAGE + Urls.AUTH_REGISTER_USER_URL, data=payload)
     yield payload
     token = response_create_user.json()["accessToken"]

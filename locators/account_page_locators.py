@@ -7,4 +7,4 @@ class AccountPageLocators:
     BUTTON_EXIT = (By.XPATH, "//button[text()='Выход']")  # Кнопка "Выход"
     BUTTON_ORDER_HISTORY = (By.XPATH, "//*[contains(@href,'/account/order-history')]")  # Кнопка "История заказов"
     LIST_ORDERS = (
-        By.XPATH, '//ul[@class="OrderHistory_profileList__374GU OrderHistory_list__KcLDB"]')  # Кнопка список заказов
+        By.XPATH, '//*[@class[contains(., "OrderHistory_profileList")]]')  # Кнопка список заказов

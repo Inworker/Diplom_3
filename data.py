@@ -27,4 +27,4 @@ class FakeData:
 
 
 class TimeWaitElement:
-    TIME_OUT = 30
+    TIME_OUT = 10
